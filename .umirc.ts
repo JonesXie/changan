@@ -13,9 +13,9 @@ export default defineConfig({
   routes: [],
   proxy: {
     '/api/': {
-      target: 'http://192.168.1.104:8080',
+      target: 'http://192.168.2.45:8080',
       changeOrigin: true,
-      // pathRewrite: { '^/api/': '' },
+      pathRewrite: { '^/api/': '' },
     },
   },
   npmClient: 'pnpm',
