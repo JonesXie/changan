@@ -52,7 +52,7 @@ const ReplyPage: React.FC = () => {
         <Form.Item label="自动回复">
           <Switch
             loading={controllerLoading}
-            value={controller}
+            value={!controller}
             onChange={controllerChange}
           ></Switch>
         </Form.Item>

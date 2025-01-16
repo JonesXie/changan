@@ -209,13 +209,13 @@ const ReplyPage: React.FC = () => {
   };
 
   return (
-    <ConfigProvider locale={zhCN}>
+    <ConfigProvider locale={zhCN} componentSize="small">
       <div className={styles.container}>
         <Form labelCol={{ span: 4 }}>
           <Form.Item label="总控开关">
             <Switch
               loading={controllerLoading}
-              value={controller}
+              value={!controller}
               onChange={controllerChange}
             ></Switch>
             <span className="controller-tips">
