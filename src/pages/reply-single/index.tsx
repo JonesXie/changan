@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react';
 const controllerDefault = false;
 
 const ReplyPage: React.FC = () => {
-  const _data: any = getUrlParams({ name: 'data' });
+  const urlParams: any = getUrlParams({});
 
   const [controller, setController] = useState<boolean>(controllerDefault);
   const [controllerLoading, setControllerLoading] = useState<boolean>(false);
@@ -17,7 +17,7 @@ const ReplyPage: React.FC = () => {
     setControllerLoading(true);
     const {
       data: { data, message: msg, code },
-    } = await querySingleControlSwitch({ data: _data });
+    } = await querySingleControlSwitch({ ...urlParams });
     if (code === '200') {
       setController(data?.flag ?? controller);
     } else {
@@ -29,7 +29,7 @@ const ReplyPage: React.FC = () => {
     setControllerLoading(true);
     const {
       data: { message: msg, code, data },
-    } = await singleControlSwitch({ data: _data, flag: checked });
+    } = await singleControlSwitch({ ...urlParams, flag: checked });
     if (code === '200') {
       message.success(data);
       controllerFn();

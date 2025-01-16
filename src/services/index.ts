@@ -28,11 +28,11 @@ export const getDetail = (data: { data: string; createDate: string }) =>
 
 //会话列表查询接口
 export const getListChat = (data: {
-  data: string;
   questionType?: string | null;
   read?: string;
   pageNo?: number;
   pageSize?: number;
+  [key: string]: any;
 }) =>
   axios(`${base}/chat/listChat`, {
     method: 'POST',
@@ -48,7 +48,7 @@ export const enterDialogue = (id: string) =>
   });
 
 //查询自动回复总空开关查询接口
-export const queryMasterControlSwitch = (data: { data: string }) =>
+export const queryMasterControlSwitch = (data: { [key: string]: any }) =>
   axios(`${base}/chat/queryMasterControlSwitch`, {
     method: 'POST',
     data,
@@ -56,7 +56,10 @@ export const queryMasterControlSwitch = (data: { data: string }) =>
   });
 
 //自动回复总控开关接口
-export const masterControlSwitch = (data: { data: string; flag: boolean }) =>
+export const masterControlSwitch = (data: {
+  [key: string]: any;
+  flag: boolean;
+}) =>
   axios(`${base}/chat/masterControlSwitch`, {
     method: 'POST',
     data,
@@ -64,7 +67,7 @@ export const masterControlSwitch = (data: { data: string; flag: boolean }) =>
   });
 
 //查询个人自动回复开关查询接口
-export const querySingleControlSwitch = (data: { data: string }) =>
+export const querySingleControlSwitch = (data: { [key: string]: any }) =>
   axios(`${base}/chat/querySingleControlSwitch`, {
     method: 'POST',
     data,
@@ -72,7 +75,10 @@ export const querySingleControlSwitch = (data: { data: string }) =>
   });
 
 //单用户自动回复开关接口
-export const singleControlSwitch = (data: { data: string; flag: boolean }) =>
+export const singleControlSwitch = (data: {
+  [key: string]: any;
+  flag: boolean;
+}) =>
   axios(`${base}/chat/singleControlSwitch`, {
     method: 'POST',
     data,

@@ -78,7 +78,7 @@ const pageSizeDefault = 10;
 const totalDefault = 0;
 
 const ReplyPage: React.FC = () => {
-  const _data: any = getUrlParams({ name: 'data' });
+  const urlParams: any = getUrlParams({});
 
   const [controller, setController] = useState<boolean>(controllerDefault);
   const [controllerLoading, setControllerLoading] = useState<boolean>(false);
@@ -86,7 +86,7 @@ const ReplyPage: React.FC = () => {
     setControllerLoading(true);
     const {
       data: { data, message: msg, code },
-    } = await queryMasterControlSwitch({ data: _data });
+    } = await queryMasterControlSwitch({ ...urlParams });
     if (code === '200') {
       setController(data?.flag ?? controller);
     } else {
@@ -98,7 +98,7 @@ const ReplyPage: React.FC = () => {
     setControllerLoading(true);
     const {
       data: { message: msg, code, data },
-    } = await masterControlSwitch({ data: _data, flag: checked });
+    } = await masterControlSwitch({ ...urlParams, flag: checked });
     if (code === '200') {
       message.success(data);
       controllerFn();
@@ -134,7 +134,7 @@ const ReplyPage: React.FC = () => {
   const getListFn = async (params: Record<string, any> = {}) => {
     setListLoading(true);
     let _params = {
-      data: _data,
+      ...urlParams,
       questionType: isType ?? '',
       read: isRead,
       pageNo: page,
