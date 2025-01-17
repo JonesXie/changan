@@ -58,7 +58,7 @@ const ReplyPage: React.FC = () => {
           ></Switch>
         </Form.Item>
         <span className="controller-tips">
-          开启后，改客户/群聊将会进行自动回复
+          开启后，该客户/群聊将会进行自动回复
         </span>
       </Form>
     </div>
