@@ -19,7 +19,8 @@ const ReplyPage: React.FC = () => {
       data: { data, message: msg, code },
     } = await querySingleControlSwitch({ ...urlParams });
     if (code === '200') {
-      setController(data?.flag ?? controller);
+      let _controller = data?.flag === false;
+      setController(_controller);
     } else {
       message.error(msg);
     }
@@ -29,7 +30,7 @@ const ReplyPage: React.FC = () => {
     setControllerLoading(true);
     const {
       data: { message: msg, code, data },
-    } = await singleControlSwitch({ ...urlParams, flag: checked });
+    } = await singleControlSwitch({ ...urlParams, flag: !checked });
     if (code === '200') {
       message.success(data);
       controllerFn();
@@ -52,7 +53,7 @@ const ReplyPage: React.FC = () => {
         <Form.Item label="自动回复">
           <Switch
             loading={controllerLoading}
-            value={!controller}
+            value={controller}
             onChange={controllerChange}
           ></Switch>
         </Form.Item>

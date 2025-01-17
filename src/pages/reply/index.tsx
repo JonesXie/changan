@@ -88,7 +88,8 @@ const ReplyPage: React.FC = () => {
       data: { data, message: msg, code },
     } = await queryMasterControlSwitch({ ...urlParams });
     if (code === '200') {
-      setController(data?.flag ?? controller);
+      let _controller = data?.flag === false;
+      setController(_controller);
     } else {
       message.error(msg);
     }
@@ -98,7 +99,7 @@ const ReplyPage: React.FC = () => {
     setControllerLoading(true);
     const {
       data: { message: msg, code, data },
-    } = await masterControlSwitch({ ...urlParams, flag: checked });
+    } = await masterControlSwitch({ ...urlParams, flag: !checked });
     if (code === '200') {
       message.success(data);
       controllerFn();
@@ -181,7 +182,7 @@ const ReplyPage: React.FC = () => {
       data: { message: msg, code },
     } = await enterDialogue(id);
     if (code === '200') {
-      isReadChange('1');
+      getListFn();
     } else {
       message.error(msg);
     }
@@ -215,7 +216,7 @@ const ReplyPage: React.FC = () => {
           <Form.Item label="总控开关">
             <Switch
               loading={controllerLoading}
-              value={!controller}
+              value={controller}
               onChange={controllerChange}
             ></Switch>
             <span className="controller-tips">
